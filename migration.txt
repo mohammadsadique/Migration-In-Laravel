@@ -1,0 +1,29 @@
+// Add column
+Add a new column to existing table in a migration
+
+    php artisan make:migration add_customer_rate_to_shipment_carrier_quotations_table --table="shipment_carrier_quotations"
+
+    php artisan migrate
+
+// Rename column
+How can I rename column in laravel using migration?
+
+	php artisan make:migration rename_shipment_address_column --table="shipment_address"
+
+	Now I want to rename from_time to pickup_from_time.
+	$table->renameColumn('from_time','pickup_from_time'); // up function
+
+	$table->renameColumn('pickup_from_time','from_time'); // down function
+
+// Drop column
+Drop column from table 
+	php artisan make:migration drop_column2_to_shipment_address_table --table="shipment_address"   
+        $table->dropColumn('address_type');
+
+// correct way to create model and migration file
+	 php artisan make:model ModelName -m
+
+
+
+NOTE :- If you did mistake in migration process you can delete migration files, model files. And also clear data from migration table
+	(Only which file you created) and drop the table from database.
