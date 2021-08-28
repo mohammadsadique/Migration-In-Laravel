@@ -9,14 +9,14 @@ good idea to work on database through migration.
 
 
 ## Commands For migration
-## [Create model and migration file in single command]()
+#### [Create model and migration file in single command]()
 
 
 ```bash
   php artisan make:model ModelName -m
 ```
 
- ## [Add new column to an existing table]()
+ #### [Add new column to an existing table]()
 
   
 ```bash
@@ -26,7 +26,7 @@ good idea to work on database through migration.
 
 
 
-## [Rename column name from table]()
+#### [Rename column name from table]()
 
 Use below code
 
@@ -51,7 +51,7 @@ $table->renameColumn('pickup_from_time','from_time');
 ```
 
 
-## [Drop column name from table]()
+#### [Drop column name from table]()
 
 Use below code
 
