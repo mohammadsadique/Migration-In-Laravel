@@ -8,7 +8,7 @@ good idea to work on database through migration.
 
 
 
-## Commands For migration
+## Commands For Migration
 #### [Create model and migration file in single command]()
 
 
