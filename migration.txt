@@ -1,50 +1,53 @@
 Create Model & Migration file simultaneously :
 			|------------------------------------------|
-			|  	php artisan make:model ModelName -m    |
+			|  php artisan make:model ModelName -m     |
 			|------------------------------------------|
 Fix Column : 
 
 			|--------------------------------------------------------------|
-			|  	php artisan make:migration fix_column --table="tablename"  |
+			|  php artisan make:migration fix_column --table="tablename"   |
 			|--------------------------------------------------------------|
 
 			after doing these, change whatever you change in your column on migration file.
 			|-------------------------------------------------------------|
-			|  	$table->string('columnname')->nullable(false)->change();  |
+			|  $table->string('columnname')->nullable(false)->change();   |
 			|-------------------------------------------------------------|
 			
 
 Add Column :
 			First you have to create migration file for add column.
 			|----------------------------------------------------------------|
-			|  	php artisan make:migration add_column --table="tablename"    |
+			|  php artisan make:migration add_column --table="tablename"     |
 			|----------------------------------------------------------------|
 
 			|-----------------------------------------------------------------------------|
 			| $table->string('pickup_phone_no', 50)->nullable()->after('pickup_to_time'); |
 			|-----------------------------------------------------------------------------|
+			|-----------------------------------------------------------------------------|
+			| $table->unsignedBigInteger('status')->default(0)->after('pickup_to_time');  |
+			|-----------------------------------------------------------------------------|
 
 			|-------------------------------------------|
-			|	$table->dropColumn('pickup_phone_no');	|
+			|$table->dropColumn('pickup_phone_no');	    |
 			|-------------------------------------------|
 
 
 Rename Column :
 				First you have to create migration file for rename column.
 				|-------------------------------------------------------------------|
-				|  	php artisan make:migration rename_column --table="tablename"    |
+				|  php artisan make:migration rename_column --table="tablename"     |
 				|-------------------------------------------------------------------|
 
 				** up function : rename from_time to pickup_from_time.
 				|-----------------------------------------------------------------------|
-				|  	$table->renameColumn('existing_column_name','new_column_name');     |
-				|  	$table->renameColumn('from_time','pickup_from_time');               |
+				|  $table->renameColumn('existing_column_name','new_column_name');      |
+				|  $table->renameColumn('from_time','pickup_from_time');                |
 				|-----------------------------------------------------------------------|
 
 				** down funcion 
 				|-----------------------------------------------------------------------|
-				|  	$table->renameColumn('new_column_name','existing_column_name');     |
-				|  	$table->renameColumn('pickup_from_time','from_time');               |
+				|  $table->renameColumn('new_column_name','existing_column_name');      |
+				|  $table->renameColumn('pickup_from_time','from_time');                |
 				|-----------------------------------------------------------------------|
 				
 
@@ -53,29 +56,35 @@ Delete Column :
 			First you have to create migration file for drop column.
 
 			|-----------------------------------------------------------------|
-			|  	php artisan make:migration drop_column --table="tablename"    |
+			|  php artisan make:migration drop_column --table="tablename"     |
 			|-----------------------------------------------------------------|
 
 			After creating migration file use `dropColumn` inside up function after these run migrate command and it will drop your given column name.
 			** up function			
 			|----------------------------------------|
-			|  	$table->dropColumn('columnName');    |
+			|  $table->dropColumn('columnName');     |
 			|----------------------------------------|
 
+			Dropping column with foreign key 
+				|-----------------------------------------------|
+				|$table->dropForeign(['pick_detail_id']);	|
+				|$table->dropColumn('pick_detail_id');		|
+				|-----------------------------------------------|
+				
 			** down function
 
 Delete All Table ( Using Reset ) :
 			When you run these reset command it will delete your all tables from database but except migrations table. It delete records from migration table also.
 
 			|--------------------------------|
-			|  	php artisan migrate:reset    |
+			|  php artisan migrate:reset     |
 			|--------------------------------|
 
 Migrate only one table :
 			It will be any table only you have to provide that file name with the path.
 	
 			|-----------------------------------------------------------------------------------------------|
-			|  	php artisan migrate --path="\database\migrations\2014_10_12_000000_create_users_table.php"  |
+			|  php artisan migrate --path="\database\migrations\2014_10_12_000000_create_users_table.php"   |
 			|-----------------------------------------------------------------------------------------------|
 
 
@@ -86,7 +95,7 @@ Rollback :
 			One most important point for rollback is that again let suppose you create table and migrate it after migrate you want to add column, rename column, and do other changes on it except change table name you can do changes  after run roolback command and again run migrate it will show you the changes on your table.
 
 			|---------------------------------|
-			|  	php artisan migrate:rollback  |
+			|  php artisan migrate:rollback   |
 			|---------------------------------|
 
 
@@ -95,7 +104,7 @@ Rollback Step :
 
 			
 			|------------------------------------------|
-			|  	php artisan migrate:rollback --step x  |
+			|  php artisan migrate:rollback --step x   |
 			|------------------------------------------|
 
 
@@ -104,7 +113,7 @@ Migration Status :
 
 			
 			|-------------------------------|
-			|  	php artisan migrate:status  |
+			|  php artisan migrate:status   |
 			|-------------------------------|
 			
 
@@ -146,7 +155,7 @@ Migration Status :
 
 	Run :- stub:publish
 		|-------------------------------|
-		|  	php artisan stub:publish    |
+		|  php artisan stub:publish     |
 		|-------------------------------|	
 
 	It will create stub folder in your project and add what you need I added softDeletesTz() so, where ever I create migration file it wil give me those column.
