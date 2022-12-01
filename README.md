@@ -70,3 +70,5 @@ $table->dropColumn('columName');
 
 **NOTE :-** If you did mistake in migration process you can delete migration files, model files. And also clear data from migration table
 	(Only which file you created) and drop the table from database.
+	
+	Please check migration.txt file if some thing is missing.
